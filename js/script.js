@@ -115,12 +115,12 @@ var TrashModel = function(_lable, _cell) {
     var day_mix = this.dayCell;
     var result_text = "";
     var day_list = new Array();
-    
+
     // 定期回収の場合
     if (this.regularFlg == 1) {
 
       var today = new Date();
-        
+
       // 12月 +3月　を表現
       for (var i = 0; i < MaxMonth; i++) {
 
@@ -133,7 +133,7 @@ var TrashModel = function(_lable, _cell) {
             continue;
         }
         for (var j in day_mix) {
-          //休止期間だったら、今後一週間ずらす。 
+          //休止期間だったら、今後一週間ずらす。
           var isShift = false;
 
           //week=0が第1週目です。
@@ -295,6 +295,21 @@ $(function() {
     });
   }
 
+  function orderFromHash(hash) {
+    // ""なら -1
+    // "#123" なら 123
+    // "#invalid_number" なら -1
+    // を返す
+    if(!hash) {
+      return -1;
+    }
+    var number = hash.match(/^\#([0-9]+)/)[1];
+    if(number) {
+      return parseInt(number, 10)
+    };
+    return -1;
+  }
+
   function updateAreaList() {
     csvToArray("data/area_days.csv", function(tmp) {
       var area_days_label = tmp.shift();
@@ -350,6 +365,11 @@ $(function() {
         }
         //HTMLへの適応
         area_select_form.html(select_html);
+        var optionOrder = orderFromHash(location.hash);
+        console.debug("optionOrder", optionOrder);
+        if(optionOrder !== -1) {
+          area_select_form.prop("selectedIndex", optionOrder);
+        }
         area_select_form.change();
       });
     });
@@ -401,7 +421,7 @@ $(function() {
 if(descriptions.length>5){
     if (accordion_height<100) {accordion_height=100;};
 }
-    
+
     var styleHTML = "";
     var accordionHTML = "";
     //アコーディオンの分類から対応の計算を行います。
@@ -451,7 +471,7 @@ if(descriptions.length>5){
           } else {
             leftDayText = leftDay + "日後";
           }
-          
+
           styleHTML += '#accordion-group' + d_no + '{background-color:  ' + description.background + ';} ';
 
           accordionHTML +=
@@ -477,7 +497,7 @@ if(descriptions.length>5){
             "</div>";
       }
     }
-    
+
     $("#accordion-style").html('<!-- ' + styleHTML + ' -->');
 
     var accordion_elm = $("#accordion");
@@ -485,7 +505,7 @@ if(descriptions.length>5){
 
     $('html,body').animate({scrollTop: 0}, 'fast');
 
-    //アコーディオンのラベル部分をクリックしたら  
+    //アコーディオンのラベル部分をクリックしたら
     $(".accordion-body").on("shown.bs.collapse", function() {
       var body = $('body');
       var accordion_offset = $($(this).parent().get(0)).offset().top;
@@ -493,7 +513,7 @@ if(descriptions.length>5){
         scrollTop: accordion_offset
       }, 50);
     });
-    //アコーディオンの非表示部分をクリックしたら  
+    //アコーディオンの非表示部分をクリックしたら
     $(".accordion-body").on("hidden.bs.collapse", function() {
       if ($(".in").length == 0) {
         $("html, body").scrollTop(0);
@@ -501,7 +521,7 @@ if(descriptions.length>5){
     });
   }
 
-  function onChangeSelect(row_index) {　
+  function onChangeSelect(row_index) {
     if (row_index == -1) {
       $("#accordion").html("");
       setSelectedAreaName("");
@@ -537,7 +557,7 @@ if(descriptions.length>5){
 
   //-----------------------------------
   //位置情報をもとに地域を自動的に設定する処理です。
-  //これから下は現在、利用されておりません。 
+  //これから下は現在、利用されておりません。
   //将来的に使うかもしれないので残してあります。
   $("#gps_area").click(function() {
     navigator.geolocation.getCurrentPosition(function(position) {
