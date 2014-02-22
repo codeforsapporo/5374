@@ -295,6 +295,21 @@ $(function() {
     });
   }
 
+  function orderFromHash(hash) {
+    // ""なら -1
+    // "#123" なら 123
+    // "#invalid_number" なら -1
+    // を返す
+    if(!hash) {
+      return -1;
+    }
+    var number = hash.match(/^\#([0-9]+)/)[1];
+    if(number) {
+      return parseInt(number, 10)
+    };
+    return -1;
+  }
+
   function updateAreaList() {
     csvToArray("data/area_days.csv", function(tmp) {
       var area_days_label = tmp.shift();
@@ -350,6 +365,11 @@ $(function() {
         }
         //HTMLへの適応
         area_select_form.html(select_html);
+        var optionOrder = orderFromHash(location.hash);
+        console.debug("optionOrder", optionOrder);
+        if(optionOrder !== -1) {
+          area_select_form.prop("selectedIndex", optionOrder);
+        }
         area_select_form.change();
       });
     });
