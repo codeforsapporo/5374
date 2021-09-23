@@ -1,5 +1,7 @@
 # 5374について
-##「いつ、どのゴミが収集されているのか？」
+[http://sapporo.5374.jp/](http://sapporo.5374.jp/)
+
+## 「いつ、どのゴミが収集されているのか？」
 
 ゴミの問題はどの地域でも深刻になりつつあります。
  [Code for Kanazawa](http://codeforkanazawa.org/)
@@ -20,10 +22,10 @@
 [5374 for kanazawa](http://kanazawa.5374.jp/ )を使う。
 
 
-##提供されるゴミ情報について
+## 提供されるゴミ情報について
 金沢市が公開しているオープンデータをもとにしています。
 
-##開発チームとライセンスについて
+## 開発チームとライセンスについて
 - 小野 祐貴(Yuki ONO)　Developer
 - 五十川 員申(Kazunobu IKAGAWA)　Developer
 - 高木 志宗(Yukimune TAKAGI)　Developer
@@ -55,7 +57,7 @@ unusedは将来的には使用するかもしれないプログラムなどが�
 
 ゴミの地名を記述します。
 
-###センター
+### センター
 
 上記の理由で、ゴミ処理センターを記述します。
 data/center.csvと対応した、名称を記述します。
