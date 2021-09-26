@@ -131,12 +131,12 @@ var TrashModel = function(_lable, _cell) {
     var day_mix = this.dayCell;
     var result_text = "";
     var day_list = new Array();
-    
+
     // 定期回収の場合
     if (this.regularFlg == 1) {
 
       var today = new Date();
-        
+
       // 12月 +3月　を表現
       for (var i = 0; i < MaxMonth; i++) {
 
@@ -149,7 +149,7 @@ var TrashModel = function(_lable, _cell) {
             continue;
         }
         for (var j in day_mix) {
-          //休止期間だったら、今後一週間ずらす。 
+          //休止期間だったら、今後一週間ずらす。
           var isShift = false;
 
           //week=0が第1週目です。
@@ -417,7 +417,7 @@ $(function() {
   /*if(descriptions.length>5){
     if (accordion_height<100) {accordion_height=100;};
   }*/
-    
+
     var styleHTML = "";
     var accordionHTML = "";
     //アコーディオンの分類から対応の計算を行います。
@@ -473,7 +473,7 @@ $(function() {
           } else {
             leftDayText = leftDay + "日後";
           }
-          
+
           styleHTML += '#accordion-group' + d_no + '{background-color:  ' + description.background + ';} ';
 
           accordionHTML +=
@@ -502,7 +502,7 @@ $(function() {
             "</div>";
       }
     }
-    
+
     $("#accordion-style").html('<!-- ' + styleHTML + ' -->');
 
     var accordion_elm = $("#accordion");
@@ -510,7 +510,7 @@ $(function() {
 
     $('html,body').animate({scrollTop: 0}, 'fast');
 
-    //アコーディオンのラベル部分をクリックしたら  
+    //アコーディオンのラベル部分をクリックしたら
     $(".accordion-body").on("shown.bs.collapse", function() {
       var body = $('body');
       var accordion_offset = $($(this).parent().get(0)).offset().top;
@@ -518,7 +518,7 @@ $(function() {
         scrollTop: accordion_offset
       }, 50);
     });
-    //アコーディオンの非表示部分をクリックしたら  
+    //アコーディオンの非表示部分をクリックしたら
     $(".accordion-body").on("hidden.bs.collapse", function() {
       if ($(".in").length == 0) {
         $("html, body").scrollTop(0);
@@ -562,7 +562,7 @@ $(function() {
 
   //-----------------------------------
   //位置情報をもとに地域を自動的に設定する処理です。
-  //これから下は現在、利用されておりません。 
+  //これから下は現在、利用されておりません。
   //将来的に使うかもしれないので残してあります。
   $("#gps_area").click(function() {
     navigator.geolocation.getCurrentPosition(function(position) {
