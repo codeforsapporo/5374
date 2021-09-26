@@ -102,12 +102,15 @@ var TrashModel = function(_lable, _cell) {
   }
   this.dayLabel = result_text;
 
+  this.getCycleLabel = function() {
+    return this.dayLabel;
+  }
+
   this.getDateLabel = function() {
     if (!this.mostRecent) {
       return "";
     }
-    var result_text = this.mostRecent.getFullYear() + "/" + (1 + this.mostRecent.getMonth()) + "/" + this.mostRecent.getDate();
-    return this.dayLabel + " " + result_text;
+    return (1 + this.mostRecent.getMonth()) + "/" + this.mostRecent.getDate();
   }
 
   var day_enum = ["日", "月", "火", "水", "木", "金", "土"];
@@ -451,6 +454,7 @@ $(function() {
           target_tag += "</ul>";
 
           var dateLabel = trash.getDateLabel();
+          var cycleLabel = trash.getCycleLabel();
           //あと何日かを計算する処理です。
           var leftDay = null;
           if (trash.mostRecent) {
@@ -476,7 +480,10 @@ $(function() {
             '<div class="accordion-group" id="accordion-group' + d_no + '">' +
             '<div class="accordion-heading">' +
             '<a class="accordion-toggle" style="height:' + accordion_height + 'px" data-toggle="collapse" data-parent="#accordion" href="#collapse' + i + '">' +
-            '<div class="left-day">' + leftDayText + '</div>' +
+            '<div class="left-day">' +
+            '<span class="day-text">' + leftDayText + '</span>' +
+            '<span class="date-text">' + dateLabel + '</span>' +
+            '</div>' +
             '<div class="accordion-table" >';
           if (ableSVG && SVGLabel) {
             accordionHTML += '<img src="' + description.styles + '" alt="' + description.label + '"  />';
@@ -484,7 +491,7 @@ $(function() {
             accordionHTML += '<p class="text-center">' + description.label + "</p>";
           }
           accordionHTML += "</div>" +
-            '<h6><p class="text-left date">' + dateLabel + "</p></h6>" +
+            '<h6><p class="text-left date">' + cycleLabel + "</p></h6>" +
             "</a>" +
             "</div>" +
             '<div id="collapse' + i + '" class="accordion-body collapse">' +
