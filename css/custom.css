@@ -76,10 +76,20 @@ a.accordion-toggle-top:hover{
 #gps_area {margin-top: 5px;}
 
 .left-day{
-       font-size: 1.5em;
-       color: white;
-       position: absolute;
-       padding-left: 10px;
+	color: white;
+	position: absolute;
+	padding-left: 10px;
+	padding-right: 10px;
+
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.day-text{
+	font-size: 1.5em;
+}
+.date-text{
+	font-size: 1.2em;
 }
 a,a:hover{	
 	color: white;
