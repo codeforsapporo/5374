@@ -14,7 +14,7 @@ font-family:".HiraKakuInterface-W1",'Lucida Grande',
 
 .accordion-group{margin-bottom:0;border:0;border-radius:0}
 
-#accordion3 
+#accordion3
 a.accordion-toggle-top{
 	margin: 0;
 	text-align: left;
@@ -63,7 +63,7 @@ a.accordion-toggle-top{
 }
 a.accordion-toggle-top:hover{
 	color: #000000;
-	
+
 }
 .accordion-group-top{background-color:  #ffffff;}
 
@@ -71,17 +71,27 @@ a.accordion-toggle-top:hover{
 
 #accordion2 {display: none;}
 #accordion2 .accordion-inner {text-align: center}
-.date {} 
+.date {}
 
 #gps_area {margin-top: 5px;}
 
 .left-day{
-       font-size: 1.5em;
-       color: white;
-       position: absolute;
-       padding-left: 10px;
+	color: white;
+	position: absolute;
+	padding-left: 10px;
+	padding-right: 10px;
+
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 }
-a,a:hover{	
+.day-text{
+	font-size: 1.5em;
+}
+.date-text{
+	font-size: 1.2em;
+}
+a,a:hover{
 	color: white;
 	text-decoration: none;
 }
